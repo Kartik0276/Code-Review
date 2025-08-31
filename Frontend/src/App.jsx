@@ -56,7 +56,7 @@ const App = () => {
         code,
         language,
       });
-      console.log(response.data);
+      //console.log(response.data);
       setReview(response.data);
     } catch (error) {
       console.log(error.message);
