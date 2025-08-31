@@ -44,11 +44,13 @@ const App = () => {
   let [code, setCode] = useState(defaultSnippets["javascript"]); 
   const [disabled, setDisabled] = useState(false);
   const [review, setReview] = useState(``);
+  const [reviewOn, setReviewOn] = useState(false);
 
   async function reviewCode() {
     setReview("");
     code = code.trim();
     if(code.length === 0)return;
+    setReviewOn(true);
     setDisabled(true);
     try {
       
@@ -58,6 +60,7 @@ const App = () => {
       });
       //console.log(response.data);
       setReview(response.data);
+      setReviewOn(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -76,7 +79,7 @@ const App = () => {
       <div className="left">
         <div style={{ marginBottom: "10px" }}>
           <label style={{ marginRight: "10px" }}>Select Language: </label>
-          <select value={language} onChange={handleLanguageChange}>
+          <select value={language} onChange={handleLanguageChange} disabled={reviewOn}>
             <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
             <option value="java">Java</option>
