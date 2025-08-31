@@ -1,0 +1,182 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+html, body, #root { 
+  height: 100%; 
+  width: 100%; 
+  background: #0e0f12; 
+  color: #e8eaf0; 
+  overflow: hidden;
+}
+
+:root{
+  --panel: #13151b;
+  --panel-alt: #1a1f29;
+  --surface: #171717;
+  --border: rgba(255,255,255,0.06);
+  --accent: #3b82f6;
+  --accent-600: #2563eb;
+  --text: #e8eaf0;
+  --muted: #a8b3c2;
+}
+
+main{
+  height: 100%;
+  width: 100%;
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ✅ Equal size panels with scroll */
+main .left, 
+main .right {
+  height: 100%;       
+  min-height: 0;      
+  border-radius: 0.7rem;
+  border: 1px solid var(--border);
+  overflow: hidden;   /* child manages scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+main .left{
+  background: var(--panel);
+  padding: 20px;
+  
+}
+
+.left .code{
+  flex: 1 1 auto;
+  /* background: var(--surface); */
+  border-radius: 0.7rem;
+  overflow: auto;   /* ✅ scroll only code area */
+}
+
+
+.code pre,
+.code pre code{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background: transparent; 
+}
+
+.hljs{
+  background: transparent !important;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.left .code textarea{
+  outline: none !important;    
+  caret-color: var(--text);
+}
+
+/* ✅ Pinned Review button */
+main .left .review{
+  position: sticky;
+  bottom: 2rem;
+  align-self: flex-end;
+  margin-top: 1rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.55rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.25);
+  transition: transform .15s ease, background-color .2s ease, box-shadow .2s ease;
+  user-select: none;
+}
+
+button{ 
+  border: none; 
+  outline: none; 
+  background: transparent; 
+}
+button:focus{ outline: none; }
+button:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 2px; 
+}
+
+main .left .review:hover{
+  background: var(--accent-600);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.35);
+}
+main .left .review:active{ transform: translateY(0); }
+
+main .right{
+  background: var(--panel-alt);
+  padding: 1rem 2.25rem;
+  overflow: auto;   /* ✅ review scrolls */
+}
+
+main .right h1, 
+main .right h2, 
+main .right h3{ margin: .6rem 0; }
+main .right p, 
+main .right ul, 
+main .right ol{ 
+  color: var(--text); 
+  margin: .5rem 0; 
+}
+main .right code{ 
+  background: rgba(255,255,255,0.06); 
+  padding: .15rem .35rem; 
+  border-radius: .35rem; 
+}
+
+/* Scrollbar style */
+.left .code::-webkit-scrollbar,
+.right::-webkit-scrollbar{ 
+  width: 10px; 
+  height: 10px; 
+}
+.left .code::-webkit-scrollbar-thumb,
+.right::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.12);
+  border-radius: 8px;
+}
+.left .code::-webkit-scrollbar-track,
+.right::-webkit-scrollbar-track{ background: transparent; }
+
+/* 📱 Mobile View */
+@media (max-width: 900px){
+  main{ grid-template-columns: 1fr; }
+
+  main .left, 
+  main .right{ 
+    height: 50vh;   /* ✅ each takes half screen */
+    min-height: 0;  
+  }
+
+  .left .code{
+    flex: 1 1 auto;
+    overflow: auto;
+
+  }
+
+  main .left .review{
+    position: static;
+    align-self: flex-end;
+    margin-top: .75rem;
+  }
+
+  main .right{
+    overflow: auto; /* ✅ review scrolls */
+    padding-bottom: 70px;
+  }
+}
+
+@media (max-width: 480px){
+  main{ padding: .75rem; gap: .75rem; }
+  .hljs{ font-size: 0.9rem; }
+}
