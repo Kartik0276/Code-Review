@@ -52,7 +52,7 @@ const App = () => {
     setDisabled(true);
     try {
       
-      const response = await axios.post("https://codereview-backend-0hcy.onrender.com", {
+      const response = await axios.post("https://codereview-backend-0hcy.onrender.com/ai/get-review", {
         code,
         language,
       });
