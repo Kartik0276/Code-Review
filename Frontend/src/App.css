@@ -32,14 +32,14 @@ main{
   gap: 1rem;
 }
 
-/* ✅ Equal size panels with scroll */
+
 main .left, 
 main .right {
   height: 100%;       
   min-height: 0;      
   border-radius: 0.7rem;
   border: 1px solid var(--border);
-  overflow: hidden;   /* child manages scroll */
+  overflow: hidden;  
   display: flex;
   flex-direction: column;
 }
@@ -52,9 +52,8 @@ main .left{
 
 .left .code{
   flex: 1 1 auto;
-  /* background: var(--surface); */
   border-radius: 0.7rem;
-  overflow: auto;   /* ✅ scroll only code area */
+  overflow: auto;  
 }
 
 
@@ -77,7 +76,7 @@ main .left{
   caret-color: var(--text);
 }
 
-/* ✅ Pinned Review button */
+
 main .left .review{
   position: sticky;
   bottom: 2rem;
@@ -116,7 +115,7 @@ main .left .review:active{ transform: translateY(0); }
 main .right{
   background: var(--panel-alt);
   padding: 1rem 2.25rem;
-  overflow: auto;   /* ✅ review scrolls */
+  overflow: auto;   
 }
 
 main .right h1, 
@@ -134,7 +133,7 @@ main .right code{
   border-radius: .35rem; 
 }
 
-/* Scrollbar style */
+
 .left .code::-webkit-scrollbar,
 .right::-webkit-scrollbar{ 
   width: 10px; 
@@ -148,13 +147,13 @@ main .right code{
 .left .code::-webkit-scrollbar-track,
 .right::-webkit-scrollbar-track{ background: transparent; }
 
-/* 📱 Mobile View */
+
 @media (max-width: 900px){
   main{ grid-template-columns: 1fr; }
 
   main .left, 
   main .right{ 
-    height: 50vh;   /* ✅ each takes half screen */
+    height: 50vh;  
     min-height: 0;  
   }
 
@@ -171,7 +170,7 @@ main .right code{
   }
 
   main .right{
-    overflow: auto; /* ✅ review scrolls */
+    overflow: auto; 
     padding-bottom: 70px;
   }
 }
